@@ -19,7 +19,8 @@ export type PlaybackCommand =
   | { type: "SEEK_RELATIVE"; deltaSeconds: number }
   | { type: "SEEK_TO"; timeSeconds: number }
   | { type: "SET_VOLUME"; volume: number }
-  | { type: "SET_MUTED"; muted: boolean };
+  | { type: "SET_MUTED"; muted: boolean }
+  | { type: "NEXT_VIDEO" };
 
 export type RemoteAction =
   | { type: "PLAY_VIDEO_URL"; url: string }
@@ -133,6 +134,7 @@ const VALID_COMMAND_TYPES = new Set<PlaybackCommand["type"]>([
   "SEEK_TO",
   "SET_VOLUME",
   "SET_MUTED",
+  "NEXT_VIDEO",
 ]);
 
 export function validatePlaybackCommand(
@@ -156,6 +158,7 @@ export function validatePlaybackCommand(
     case "PLAY":
     case "PAUSE":
     case "TOGGLE_PLAY":
+    case "NEXT_VIDEO":
       return { ok: true, command: { type } };
 
     case "SEEK_RELATIVE": {

@@ -225,6 +225,19 @@ async function executePlayerCommand(
       video.muted = command.muted;
       return { ok: true, snapshot: readPlayerSnapshot() };
     }
+
+    case "NEXT_VIDEO": {
+      const nextBtn = document.querySelector<HTMLElement>(".ytp-next-button");
+      if (!nextBtn || nextBtn.getAttribute("aria-disabled") === "true") {
+        return {
+          ok: false,
+          snapshot: readPlayerSnapshot(),
+          error: "No next video is available in the current YouTube player.",
+        };
+      }
+      nextBtn.click();
+      return { ok: true, snapshot: readPlayerSnapshot() };
+    }
   }
 }
 

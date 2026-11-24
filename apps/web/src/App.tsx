@@ -12,6 +12,7 @@ import {
   RotateCw,
   Search,
   ShieldCheck,
+  SkipForward,
   Smartphone,
   Star,
   Volume2,
@@ -203,9 +204,19 @@ export function App() {
   const [identity, setIdentity] = useState<PhoneIdentityStorage>(() =>
     loadIdentity(),
   );
-  const [relayUrl, setRelayUrl] = useState<string>(
-    () => identity.relayUrl || getDefaultRelayUrl(),
-  );
+  const [relayUrl, setRelayUrl] = useState<string>(() => {
+    const fallback = getDefaultRelayUrl();
+    const isCapacitor =
+      typeof (window as unknown as { Capacitor?: unknown }).Capacitor !==
+      "undefined";
+    const host = window.location.hostname || "localhost";
+    // When served over LAN HTTP/HTTPS in a mobile browser, follow the active
+    // page host automatically so switching Wi-Fi doesn't stick to an old IP.
+    if (!isCapacitor && host !== "localhost" && host !== "127.0.0.1") {
+      return fallback;
+    }
+    return identity.relayUrl || fallback;
+  });
   const [relayStatus, setRelayStatus] = useState<
     "connecting" | "online" | "offline"
   >("connecting");
@@ -650,7 +661,7 @@ export function App() {
       | {
           type: "PLAYER_COMMAND";
           command:
-            | { type: "PLAY" | "PAUSE" | "TOGGLE_PLAY" }
+            | { type: "PLAY" | "PAUSE" | "TOGGLE_PLAY" | "NEXT_VIDEO" }
             | { type: "SEEK_RELATIVE"; deltaSeconds: number }
             | { type: "SEEK_TO"; timeSeconds: number }
             | { type: "SET_VOLUME"; volume: number }
@@ -1201,6 +1212,23 @@ export function App() {
                     })
                   }
                 />
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="icon"
+                  className="size-11 rounded-full"
+                  disabled={isSending || !player || player.status !== "ready"}
+                  aria-label="Next video"
+                  title="Next video"
+                  onClick={() =>
+                    sendRemoteAction({
+                      type: "PLAYER_COMMAND",
+                      command: { type: "NEXT_VIDEO" },
+                    })
+                  }
+                >
+                  <SkipForward className="size-5" />
+                </Button>
               </div>
 
               {/* Desktop Volume & Mute */}

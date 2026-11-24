@@ -5,7 +5,8 @@ export type PlaybackCommand =
   | { type: "SEEK_RELATIVE"; deltaSeconds: number }
   | { type: "SEEK_TO"; timeSeconds: number }
   | { type: "SET_VOLUME"; volume: number }
-  | { type: "SET_MUTED"; muted: boolean };
+  | { type: "SET_MUTED"; muted: boolean }
+  | { type: "NEXT_VIDEO" };
 
 export type PlayerErrorCode =
   | "PLAYBACK_BLOCKED"
