@@ -158,8 +158,9 @@ function getDefaultRelayUrl(): string {
   const host = window.location.hostname || "localhost";
   if (isCapacitor && host === "localhost") {
     // Inside native Android WebView, localhost refers to the phone itself;
-    // default to the desktop LAN relay IP (can also be overridden in Devices).
-    return "ws://192.168.1.4:8787/ws";
+    // set VITE_RELAY_URL in .env.local (e.g. ws://<your-mac>.local:8787/ws)
+    // or override the relay URL in the Devices tab.
+    return "ws://localhost:8787/ws";
   }
   return `${proto}//${host}:8787/ws`;
 }
