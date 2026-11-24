@@ -1,0 +1,34 @@
+# OS & Editor
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Dependencies & Build Outputs
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# Environment & Runtime State
+.env
+.env.*
+!.env.example
+services/api/data/
+
+# Android / Gradle / Capacitor
+apps/web/android/.gradle/
+apps/web/android/build/
+apps/web/android/app/build/
+apps/web/android/capacitor-cordova-android-plugins/build/
+apps/web/android/local.properties
+apps/web/android/.idea/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Logs
+*.log
+npm-debug.log*

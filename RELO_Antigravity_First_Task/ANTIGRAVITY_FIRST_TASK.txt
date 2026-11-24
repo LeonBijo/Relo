@@ -1,0 +1,62 @@
+Build RELO’s first working Chrome-extension milestone in this workspace.
+
+RELO lets a phone control YouTube playback in one designated desktop browser tab. This milestone proves the desktop receiver through local extension controls. Later milestones add the phone web app, relay, pairing, session approval, and shared queues. Account sign-in is deferred.
+
+Read the supplied materials first
+- RELO_Design_Reference.html is the visual reference. Review the Phone, Extension, and shared component sections.
+- design-reference/src/ExtensionScreens.tsx contains the assembled extension previews.
+- design-reference/src/components/ui/ contains the installed shadcn components.
+- design-reference/src/theme.css defines RELO colors and embedded Roboto.
+- RELO_Logo_Assets/ contains the original raster, derivatives, icon sizes, and logo guidelines.
+
+The reference uses local demonstration data. Implement genuine browser and player behavior for the capabilities below. Treat the reference as a design resource, and keep extension code in apps/extension/.
+
+Build this milestone
+1. Create a Chrome Manifest V3 extension with a TypeScript service worker, a YouTube content script, and a React popup. Reuse the relevant shadcn components and RELO theme.
+2. Let the user explicitly designate one YouTube tab. When several YouTube tabs are open, show enough information to choose the intended tab.
+3. Accept an HTTPS YouTube video link. Support youtube.com/watch?v=ID, youtu.be/ID, and youtube.com/shorts/ID. Validate the hostname, route, and video ID, then construct a canonical YouTube watch URL.
+4. On Play video, reuse the designated tab. When no valid receiver tab exists, create one YouTube tab and designate it. Keep other browser tabs unaffected.
+5. Provide real play/pause, rewind ten seconds, forward ten seconds, a seek slider with elapsed and total time, volume, and mute. Show the current video title and playback state.
+6. Keep the popup synchronized when playback is changed directly on YouTube. Detect video completion and expose that state for the future queue milestone.
+7. Restore the designation when reopening the popup and after service-worker suspension. Revalidate stored tab IDs. Handle tab closure, navigation away from YouTube, and YouTube’s in-page video changes.
+8. Display useful loading, missing-player, disconnected, invalid-link, and playback-blocked feedback. Catch play() failures and explain when the user must interact with YouTube. Handle unavailable duration and live-video seeking capabilities honestly.
+
+Interface
+- Use the supplied logo geometry and red/white/black identity.
+- Use Roboto, packaged locally with its license.
+- Follow the reference’s compact 360 px extension layout, consistent spacing, compact switches, visible focus states, and readable labels.
+- Add a clearly labeled local receiver-test area for this milestone’s playback controls.
+- Preserve the reference and its source while building the extension.
+- Present completed capabilities accurately. Pairing and approval screens belong to their later functional milestone.
+
+Implementation
+- Use a clear build command that produces apps/extension/dist with a valid manifest and local assets.
+- Bundle executable code inside the extension. Keep the standalone HTML reference as a review artifact.
+- Use YouTube-scoped host access and the narrowly required extension permissions. Explain the purpose of every permission.
+- Use extension messaging between popup, worker, and content script. Validate command types, numeric ranges, message origins, and the designated receiver.
+- Keep player integration isolated from the popup so the later approved remote-session flow can call the same validated command handlers.
+- Keep runtime state consistent during navigation, repeated clicks, retries, and worker restarts.
+- Playback will use YouTube’s browser player. External API search and account services arrive in later milestones.
+
+Verify before reporting completion
+- Run the build and type checks.
+- Check valid and invalid video links, including lookalike domains.
+- Verify that repeated Play video actions reuse the same designated tab.
+- Exercise play/pause, ten-second seek bounds, slider updates, volume/mute, and player-to-popup synchronization.
+- Check popup reopening, multiple YouTube tabs, receiver closure, navigation, and missing-player behavior.
+- Add focused automated checks where they can catch real routing or validation regressions.
+- Perform live Chrome checks where the environment supports them. Report any browser checks that still need the user’s machine, with exact steps and expected results.
+
+Deliver
+- Working source and a loadable unpacked extension build.
+- A concise setup guide covering installation, build, Chrome’s Load unpacked action, and first use.
+- A summary of implemented functionality, permissions, completed checks, and remaining verification.
+- Finish this milestone before expanding into the phone connection.
+
+Consult current primary Chrome documentation as needed
+- https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts
+- https://developer.chrome.com/docs/extensions/reference/api/tabs
+- https://developer.chrome.com/docs/extensions/develop/migrate/remote-hosted-code
+
+Begin implementation after inspecting the supplied files. Resolve routine choices from this brief and report material assumptions.
+
