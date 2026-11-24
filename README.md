@@ -6,8 +6,13 @@
 
   <p>
     <img src="https://img.shields.io/badge/status-beta-ff0033?style=for-the-badge" alt="Status: Beta" />
-    <img src="https://img.shields.io/badge/node-22%2B-181818?style=for-the-badge&logo=node.js" alt="Node 22+" />
-    <img src="https://img.shields.io/badge/platform-Web%20%7C%20Android%20%7C%20Chrome-262626?style=for-the-badge" alt="Platform" />
+    <img src="https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" />
+    <img src="https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Capacitor-Android-119EFF?style=for-the-badge&logo=capacitor&logoColor=white" alt="Capacitor Android" />
+    <img src="https://img.shields.io/badge/Chrome-Extension_MV3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Extension" />
+    <img src="https://img.shields.io/badge/Node.js-22%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js 22+" />
+    <img src="https://img.shields.io/badge/WebSocket-Relay-181818?style=for-the-badge" alt="WebSocket Relay" />
   </p>
 </div>
 
@@ -169,6 +174,27 @@ cd apps/extension && npm run typecheck && npm test
 # Phone Web App
 cd apps/web && npm run typecheck && npm run build
 ```
+
+---
+
+## How It Was Built & What I Learned
+
+Building RELO meant coordinating three separate runtimes—a **Node.js relay**, a **Chrome Manifest V3 extension**, and a **React + Capacitor Android app**—so every command feels instantaneous:
+
+- **Real-Time State Sync**: Designed a lightweight WebSocket protocol in `services/api` with 6-digit PIN pairing, explicit desktop authorization, and persistent pairing tokens so trusted devices reconnect cleanly.
+- **Chrome MV3 Extension Architecture**: Wired background service workers to YouTube content scripts (`apps/extension`) to track active tabs, read live playback state, and execute play/pause, seek, volume, speed, caption, and tab-switching commands.
+- **Mobile & Android Polish**: Built a dark-first mobile UI (`apps/web`) with a sticky status header and packaged it with Capacitor (`apps/web/android`), including custom Android adaptive launcher icons sized to the 66dp safe zone so the RELO mark never crops.
+
+## Future Improvements
+
+- [ ] Signed release APK / AAB published via **GitHub Releases**
+- [ ] Optional remote/cloud relay mode for controlling desktops outside the local Wi-Fi network
+- [ ] Shared playback queue & Watch Later sync across paired devices
+- [ ] Keyboard shortcuts and customizable quick-seek intervals
+
+## Live Demo
+
+> *Demo video / GIF coming soon — record a quick clip of pairing your phone and controlling desktop YouTube, then drop it here.*
 
 ---
 
