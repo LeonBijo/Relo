@@ -20,24 +20,20 @@
 
 ## The Story: Why RELO?
 
-YouTube is built for a keyboard and mouse on desktop, and for a touchscreen on mobile, but **when you're watching YouTube on your laptop, desktop monitor, or TV-connected browser from across the room**, neither works well:
+Smart TVs have their own YouTube app, so you can easily cast and control them from your phone. **Laptops and desktops don't**—YouTube runs in a regular web browser, so once you sit back on the couch or bed, you have to get up every time you want to pause, scrub, change volume, or play the next video.
 
-- You're settled in on the couch or bed, and an ad, loud volume spike, or long intro hits, while your mouse is across the room.
-- You have three YouTube tabs open (a podcast, a music mix, and a tutorial) and want to switch tabs, scrub back 15 seconds, toggle captions, or search for the next video **without getting up**.
-- Existing remote apps either require installing heavy desktop agents, forcing you onto the same OS ecosystem, or mirroring your entire screen just to click Pause.
+**RELO** gives your desktop browser the same effortless phone remote experience:
 
-**RELO solves this super-niche problem cleanly** by turning your phone into a dedicated, zero-clutter YouTube remote for your desktop Chrome browser:
-
-1. **Open the Chrome Extension** on your desktop to generate a **6-digit pairing PIN**.
-2. **Open RELO on your phone** (mobile web app or native Android APK) and enter the PIN.
-3. **Confirm pairing once**, and your phone instantly becomes a live hardware-style YouTube controller for playback, search, volume, captions, and tab switching.
+1. **Open the Chrome Extension** on your computer to get a **6-digit PIN**.
+2. **Enter the PIN** on your phone (web app or Android APK).
+3. **Approve once** and control playback, volume, search, and YouTube tabs right from your hand.
 
 ### Pictorial Storyline
 
 ![RELO: 4-Panel Comic Storyline](RELO_Design_System/RELO_Logo_Assets/relo-storyline-comic.jpg)
 
 ### Where RELO Shines
-- **Couch / Bed Viewing**: Pause, scrub, mute, or toggle fullscreen on your monitor or TV-connected PC without touching a mouse.
+- **Couch or Bed Viewing**: Pause, scrub, mute, or toggle fullscreen on your laptop or monitor without touching the mouse.
 - **Multi-Tab Control**: See every open YouTube tab on your desktop, switch which tab you're controlling, bring a tab into focus, or close finished tabs from your phone.
 - **Hands-Free Queueing**: Search YouTube with live autocomplete right from your phone and launch the next video directly into your desktop browser.
 
