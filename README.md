@@ -1,7 +1,7 @@
 <div align="center">
   <img src="RELO_Design_System/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Logo" width="260" />
 
-  <h1>RELO — YouTube Bridge</h1>
+  <h1>RELO: YouTube Bridge</h1>
   <p><strong>Turn your phone into a real-time remote control for desktop YouTube.</strong></p>
 
   <p>
@@ -18,11 +18,11 @@
 
 ---
 
-## The Story — Why RELO?
+## The Story: Why RELO?
 
-YouTube is built for a keyboard and mouse on desktop, and for a touchscreen on mobile—but **when you're watching YouTube on your laptop, desktop monitor, or TV-connected browser from across the room**, neither works well:
+YouTube is built for a keyboard and mouse on desktop, and for a touchscreen on mobile, but **when you're watching YouTube on your laptop, desktop monitor, or TV-connected browser from across the room**, neither works well:
 
-- You're settled in on the couch or bed, and an ad, loud volume spike, or long intro hits—and your mouse is across the room.
+- You're settled in on the couch or bed, and an ad, loud volume spike, or long intro hits, while your mouse is across the room.
 - You have three YouTube tabs open (a podcast, a music mix, and a tutorial) and want to switch tabs, scrub back 15 seconds, toggle captions, or search for the next video **without getting up**.
 - Existing remote apps either require installing heavy desktop agents, forcing you onto the same OS ecosystem, or mirroring your entire screen just to click Pause.
 
@@ -30,11 +30,11 @@ YouTube is built for a keyboard and mouse on desktop, and for a touchscreen on m
 
 1. **Open the Chrome Extension** on your desktop to generate a **6-digit pairing PIN**.
 2. **Open RELO on your phone** (mobile web app or native Android APK) and enter the PIN.
-3. **Confirm pairing once**—and your phone instantly becomes a live hardware-style YouTube controller for playback, search, volume, captions, and tab switching.
+3. **Confirm pairing once**, and your phone instantly becomes a live hardware-style YouTube controller for playback, search, volume, captions, and tab switching.
 
 ### Pictorial Storyline
 
-![RELO — 4-Panel Comic Storyline](RELO_Design_System/RELO_Logo_Assets/relo-storyline-comic.jpg)
+![RELO: 4-Panel Comic Storyline](RELO_Design_System/RELO_Logo_Assets/relo-storyline-comic.jpg)
 
 ### Where RELO Shines
 - **Couch / Bed Viewing**: Pause, scrub, mute, or toggle fullscreen on your monitor or TV-connected PC without touching a mouse.
@@ -188,7 +188,7 @@ cd apps/web && npm run typecheck && npm run build
 
 ## How It Was Built & What I Learned
 
-Building RELO meant coordinating three separate runtimes—a **Node.js relay**, a **Chrome Manifest V3 extension**, and a **React + Capacitor Android app**—so every command feels instantaneous:
+Building RELO meant coordinating three separate runtimes (a **Node.js relay**, a **Chrome Manifest V3 extension**, and a **React + Capacitor Android app**) so every command feels instantaneous:
 
 - **Real-Time State Sync**: Designed a lightweight WebSocket protocol in `services/api` with 6-digit PIN pairing, explicit desktop authorization, and persistent pairing tokens so trusted devices reconnect cleanly.
 - **Chrome MV3 Extension Architecture**: Wired background service workers to YouTube content scripts (`apps/extension`) to track active tabs, read live playback state, and execute play/pause, seek, volume, speed, caption, and tab-switching commands.
@@ -200,7 +200,6 @@ Building RELO meant coordinating three separate runtimes—a **Node.js relay**, 
 - [ ] **Signed Release Builds**: Publish signed `.apk` / `.aab` installers via **GitHub Releases**
 - [ ] **Remote / Cloud Relay**: Optional hosted relay mode for controlling desktops outside the local Wi-Fi network
 - [ ] **Shared Queue & Watch Later Sync**: Synchronized playback queue across paired devices
-- [ ] **Keyboard Shortcuts & Custom Seek**: Configurable seek intervals and desktop/mobile shortcut bindings
 
 ---
 
