@@ -60,6 +60,15 @@ flowchart LR
 
 ---
 
+## Technologies Used
+
+- **Mobile & Web UI (`apps/web`)**: React 19, TypeScript 5.7, Tailwind CSS v4, Radix UI, Lucide Icons, Vite 6
+- **Android App (`apps/web/android`)**: Capacitor 8, Android SDK, Gradle
+- **Browser Receiver (`apps/extension`)**: Chrome Extensions Manifest V3, React 19, TypeScript, Vite
+- **Relay Backend (`services/api`)**: Node.js 22+, `ws` (WebSockets), YouTube Data API v3, Node built-in test runner (`node --test`)
+
+---
+
 ## Features
 
 - **6-Digit PIN Pairing & Authorization**: Explicit desktop confirmation with favorite-device support so trusted phones reconnect cleanly.
@@ -185,16 +194,13 @@ Building RELO meant coordinating three separate runtimes—a **Node.js relay**, 
 - **Chrome MV3 Extension Architecture**: Wired background service workers to YouTube content scripts (`apps/extension`) to track active tabs, read live playback state, and execute play/pause, seek, volume, speed, caption, and tab-switching commands.
 - **Mobile & Android Polish**: Built a dark-first mobile UI (`apps/web`) with a sticky status header and packaged it with Capacitor (`apps/web/android`), including custom Android adaptive launcher icons sized to the 66dp safe zone so the RELO mark never crops.
 
-## Future Improvements
+## Future Roadmap
 
-- [ ] Signed release APK / AAB published via **GitHub Releases**
-- [ ] Optional remote/cloud relay mode for controlling desktops outside the local Wi-Fi network
-- [ ] Shared playback queue & Watch Later sync across paired devices
-- [ ] Keyboard shortcuts and customizable quick-seek intervals
-
-## Live Demo
-
-> *Demo video / GIF coming soon — record a quick clip of pairing your phone and controlling desktop YouTube, then drop it here.*
+- [ ] **Multi-User Guest Mode**: Allow multiple friends or guests in the same room to connect via temporary guest PINs and queue videos with host approval
+- [ ] **Signed Release Builds**: Publish signed `.apk` / `.aab` installers via **GitHub Releases**
+- [ ] **Remote / Cloud Relay**: Optional hosted relay mode for controlling desktops outside the local Wi-Fi network
+- [ ] **Shared Queue & Watch Later Sync**: Synchronized playback queue across paired devices
+- [ ] **Keyboard Shortcuts & Custom Seek**: Configurable seek intervals and desktop/mobile shortcut bindings
 
 ---
 
