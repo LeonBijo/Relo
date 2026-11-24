@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Logo" width="260" />
+  <img src="RELO_Design_System/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Logo" width="260" />
 
   <h1>RELO — YouTube Bridge</h1>
   <p><strong>Turn your phone into a real-time remote control for desktop YouTube.</strong></p>
@@ -29,14 +29,7 @@ YouTube is built for a keyboard and mouse on desktop, and for a touchscreen on m
 
 ### Pictorial Storyline
 
-![RELO — 4-Panel Comic Storyline](RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-storyline-comic.jpg)
-
-```mermaid
-flowchart LR
-    S1["1. Across the Room\nWatching YouTube on Desktop/TV\nMouse & keyboard out of reach"] --> S2["2. Pair in Seconds\nOpen Chrome Extension for 6-digit PIN\nEnter PIN in RELO Phone/Android App"]
-    S2 --> S3["3. Approve & Link\nConfirm pairing once\nLive WebSocket Relay locks in"]
-    S3 --> S4["4. Full Remote Control\nPlay/Pause, Seek, Volume, Captions\nSearch, Queue & Switch YouTube Tabs"]
-```
+![RELO — 4-Panel Comic Storyline](RELO_Design_System/RELO_Logo_Assets/relo-storyline-comic.jpg)
 
 ### Where RELO Shines
 - **Couch / Bed Viewing**: Pause, scrub, mute, or toggle fullscreen on your monitor or TV-connected PC without touching a mouse.
@@ -80,11 +73,11 @@ RELO uses a dark-first, high-contrast media interface inspired by theater and re
 
 | Mark | Preview | Usage |
 | :--- | :---: | :--- |
-| **Full Wordmark** | <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Wordmark" width="140" /> | Primary header lockup (`relo-wordmark-dark.png` / `relo-wordmark-transparent.png`). |
-| **Compact Symbol** | <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-symbol-dark.png" alt="RELO Symbol" width="72" /> | Android adaptive launcher icon and compact placements (`relo-symbol-dark.png`). |
-| **Extension Icon** | <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/icons/relo-icon-128.png" alt="RELO Icon" width="48" /> | Browser toolbar and favicon slots (`16`, `32`, `48`, `128` px). |
+| **Full Wordmark** | <img src="RELO_Design_System/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Wordmark" width="140" /> | Primary header lockup (`relo-wordmark-dark.png` / `relo-wordmark-transparent.png`). |
+| **Compact Symbol** | <img src="RELO_Design_System/RELO_Logo_Assets/relo-symbol-dark.png" alt="RELO Symbol" width="72" /> | Android adaptive launcher icon and compact placements (`relo-symbol-dark.png`). |
+| **Extension Icon** | <img src="RELO_Design_System/RELO_Logo_Assets/icons/relo-icon-128.png" alt="RELO Icon" width="48" /> | Browser toolbar and favicon slots (`16`, `32`, `48`, `128` px). |
 
-See [`RELO_LOGO_GUIDELINES.md`](RELO_Antigravity_First_Task/RELO_Logo_Assets/RELO_LOGO_GUIDELINES.md) for full asset usage rules.
+See [`RELO_LOGO_GUIDELINES.md`](RELO_Design_System/RELO_Logo_Assets/RELO_LOGO_GUIDELINES.md) for full asset usage rules.
 
 ### Color Palette & Tokens (`apps/web/src/theme.css`)
 
