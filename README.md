@@ -1,33 +1,95 @@
-# RELO — YouTube Bridge
+<div align="center">
+  <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Logo" width="260" />
 
-RELO is a cross-device YouTube remote control system. Pair your phone (via web browser or Android APK) with your desktop Chrome browser to search YouTube, control playback, and manage open YouTube tabs over a local or hosted WebSocket relay.
+  <h1>RELO — YouTube Bridge</h1>
+  <p><strong>Turn your phone into a real-time remote control for desktop YouTube.</strong></p>
+
+  <p>
+    <img src="https://img.shields.io/badge/status-beta-ff0033?style=for-the-badge" alt="Status: Beta" />
+    <img src="https://img.shields.io/badge/node-22%2B-181818?style=for-the-badge&logo=node.js" alt="Node 22+" />
+    <img src="https://img.shields.io/badge/platform-Web%20%7C%20Android%20%7C%20Chrome-262626?style=for-the-badge" alt="Platform" />
+  </p>
+</div>
+
+---
+
+## Why RELO?
+
+Ever started a YouTube video or playlist on your laptop, desktop, or living-room monitor and wished you could pause, scrub, adjust volume, switch tabs, or queue up the next video right from your phone—without getting up or installing bloated remote desktop software?
+
+**RELO** bridges your phone and your desktop Chrome browser over a fast, local-first WebSocket relay:
+
+1. **Open the Chrome Extension** on your desktop to generate a **6-digit pairing PIN**.
+2. **Open RELO on your phone** (mobile web app or native Android APK) and enter the PIN.
+3. **Approve the pairing** on your desktop—and immediately control playback, search YouTube, and manage open YouTube tabs in real time.
+
+---
 
 ## Architecture
 
-| Package | Path | Description |
+```mermaid
+flowchart LR
+    Phone["Phone Remote\n(Web / Android APK)\napps/web"] <-->|"HTTP + WebSocket\n:8787"| Relay["Relay API\n(Pairing, Search, Sync)\nservices/api"]
+    Relay <-->|"WebSocket\nCommands & State"| Ext["Chrome Extension\n(Manifest V3)\napps/extension"]
+    Ext <-->|"Content Script"| YT["Desktop YouTube Tabs"]
+```
+
+| Package | Path | Role |
 | :--- | :--- | :--- |
-| **Relay API** | `services/api` | Node.js HTTP + WebSocket relay server (`:8787`) handling pairing PINs, authorization, YouTube search/autocomplete, and real-time command/state sync. |
-| **Phone Remote & Android App** | `apps/web` | React + Vite + TypeScript mobile UI (`:5173`) wrapped with Capacitor (`apps/web/android`) to build `RELO-debug.apk`. |
-| **Chrome Extension** | `apps/extension` | Chrome Manifest V3 extension that connects to the relay, lists open YouTube tabs, and executes playback/tab commands. |
+| **Relay API** | `services/api` | Node.js HTTP + WebSocket server (`:8787`) managing 6-digit PIN pairing, authorization, YouTube Data API search/autocomplete, and live state sync. |
+| **Phone & Android App** | `apps/web` | React 19 + Vite + TypeScript mobile remote (`:5173`) wrapped with Capacitor (`apps/web/android`) to produce `RELO-debug.apk`. |
+| **Chrome Extension** | `apps/extension` | Manifest V3 extension that connects to the relay, tracks open YouTube tabs, and executes playback and tab commands. |
 
 ---
 
 ## Features
 
-- **6-Digit PIN Pairing**: Pair a phone remote to a desktop receiver with explicit confirmation and favorite-device support.
-- **Playback Controls**: Play/pause, seek bar, skip forward/back, volume & mute, playback speed, captions, and fullscreen toggle.
-- **YouTube Search & Autocomplete**: Search YouTube directly from the phone and play results on the active or selected desktop tab.
-- **Tab Management**: View all open YouTube tabs on the paired desktop, switch active target tab, focus a tab, or close a tab remotely.
-- **Mobile & Android Ready**: Sticky top header with live connection/authorization status and custom centered RELO launcher icon.
+- **6-Digit PIN Pairing & Authorization**: Explicit desktop confirmation with favorite-device support so trusted phones reconnect cleanly.
+- **Full Playback Control**: Play/pause, interactive seek bar, skip forward/backward, volume & mute, playback speed, captions, and fullscreen toggle.
+- **YouTube Search & Autocomplete**: Search YouTube directly from your phone and launch videos onto your active or selected desktop tab.
+- **Multi-Tab Management**: Inspect all open YouTube tabs on your desktop, switch the active control target, focus a tab, or close tabs remotely.
+- **Android APK Ready**: Custom centered adaptive launcher icon, sticky top status header, and `RELO-debug.apk` Gradle build output.
+
+---
+
+## Design System & Brand Assets
+
+RELO uses a dark-first, high-contrast media interface inspired by theater and remote-control ergonomics.
+
+### Logo Lockup & Marks
+
+| Mark | Preview | Usage |
+| :--- | :---: | :--- |
+| **Full Wordmark** | <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-wordmark-dark.png" alt="RELO Wordmark" width="140" /> | Primary header lockup (`relo-wordmark-dark.png` / `relo-wordmark-transparent.png`). |
+| **Compact Symbol** | <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-symbol-dark.png" alt="RELO Symbol" width="72" /> | Android adaptive launcher icon and compact placements (`relo-symbol-dark.png`). |
+| **Extension Icon** | <img src="RELO_Antigravity_First_Task/RELO_Logo_Assets/icons/relo-icon-128.png" alt="RELO Icon" width="48" /> | Browser toolbar and favicon slots (`16`, `32`, `48`, `128` px). |
+
+See [`RELO_LOGO_GUIDELINES.md`](RELO_Antigravity_First_Task/RELO_Logo_Assets/RELO_LOGO_GUIDELINES.md) for full asset usage rules.
+
+### Color Palette & Tokens (`apps/web/src/theme.css`)
+
+| Token | Hex | Usage |
+| :--- | :--- | :--- |
+| `--background` | `#080808` | App canvas and sticky header backdrop |
+| `--card` / `--popover` | `#181818` | Elevated control surfaces and device cards |
+| `--primary` | `#ff0033` | Primary brand red, active states, and live indicators |
+| `--secondary` | `#262626` | Secondary buttons and pill controls |
+| `--muted` | `#242424` | Subtle containers and inactive tracks |
+| `--muted-foreground` | `#b8b8bd` | Secondary labels and timestamps |
+| `--border` | `#414141` | Hairline dividers and card outlines |
+| `--ring` | `#9cc4ff` | Keyboard and accessibility focus ring |
+
+- **Typography**: `Roboto` variable font (`apps/web/src/fonts/Roboto-Variable.ttf`, weights `100–900`).
+- **Border Radii**: `6px` (`sm`), `8px` (`md`), `12px` (`lg`), `16px` (`xl`).
 
 ---
 
 ## Prerequisites
 
-- **Node.js** `22+` (uses native `--experimental-strip-types` / Node test runner for TypeScript tests) and `npm`
-- **Google Chrome** (for loading `apps/extension`)
+- **Node.js `22+`** and `npm`
+- **Google Chrome** (for loading the unpacked extension)
 - **YouTube Data API v3 Key** (optional, for YouTube search in `services/api`)
-- **Android Studio / JDK 21 + Android SDK** (only needed to compile the Android APK)
+- **Android Studio / JDK 21 + Android SDK** (only needed for building the Android APK)
 
 ---
 
@@ -38,13 +100,13 @@ RELO is a cross-device YouTube remote control system. Pair your phone (via web b
 ```bash
 cd services/api
 cp .env.example .env
-# Edit .env and add your YOUTUBE_API_KEY
+# Add your YOUTUBE_API_KEY in .env
 npm install
 npm start
 ```
 
 - Runs on `http://localhost:8787` (HTTP + WebSocket).
-- Runtime pairing state is stored locally in `services/api/data/relay-state.json` (gitignored).
+- Runtime pairing state is saved locally in `services/api/data/relay-state.json` (excluded from Git).
 
 ### 2. Chrome Extension (`apps/extension`)
 
@@ -54,10 +116,9 @@ npm install
 npm run build
 ```
 
-1. Open `chrome://extensions` in Chrome.
-2. Enable **Developer mode**.
-3. Click **Load unpacked** and select `apps/extension/dist`.
-4. Open the RELO extension popup to connect to your relay server and pair with your phone.
+1. Open `chrome://extensions` in Chrome and enable **Developer mode**.
+2. Click **Load unpacked** and choose `apps/extension/dist`.
+3. Open the RELO extension popup to connect to the relay and generate your pairing PIN.
 
 ### 3. Phone Web App (`apps/web`)
 
@@ -67,7 +128,7 @@ npm install
 npm run dev
 ```
 
-- Runs on `http://0.0.0.0:5173` so phones on the same Wi-Fi network can open it directly.
+- Runs on `http://0.0.0.0:5173` so any phone on the same Wi-Fi network can access it.
 
 ### 4. Android APK (`apps/web/android`)
 
@@ -78,14 +139,12 @@ cd android
 ./gradlew assembleDebug
 ```
 
-- Output APK: `apps/web/android/app/build/outputs/apk/debug/RELO-debug.apk`
-- You can also open `apps/web/android` in Android Studio (`npm run android:open`) to run on a device or generate a signed release bundle/APK.
+- Outputs `apps/web/android/app/build/outputs/apk/debug/RELO-debug.apk`.
+- Or run `npm run android:open` from `apps/web` to open the project in Android Studio.
 
 ---
 
-## Scripts & Testing
-
-Run typechecks and unit tests for each workspace:
+## Testing & Verification
 
 ```bash
 # Relay API
@@ -100,7 +159,7 @@ cd apps/web && npm run typecheck && npm run build
 
 ---
 
-## Repository Notes
+## Repository Hygiene
 
-- Sensitive files (`services/api/.env`, `services/api/data/`, `*.keystore`, `*.jks`) and build artifacts (`node_modules/`, `dist/`, `*.apk`, Android `build/` and `.gradle/`) are excluded via `.gitignore`.
-- Copy `services/api/.env.example` to `services/api/.env` when setting up a fresh clone.
+- Secrets (`services/api/.env`), runtime pairing state (`services/api/data/`), signing keys (`*.keystore`, `*.jks`), `node_modules/`, `dist/`, and compiled `*.apk` artifacts are excluded via `.gitignore`.
+- Use [`services/api/.env.example`](services/api/.env.example) as a template when setting up a new environment.
