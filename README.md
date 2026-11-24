@@ -29,6 +29,8 @@ YouTube is built for a keyboard and mouse on desktop, and for a touchscreen on m
 
 ### Pictorial Storyline
 
+![RELO — 4-Panel Comic Storyline](RELO_Antigravity_First_Task/RELO_Logo_Assets/relo-storyline-comic.jpg)
+
 ```mermaid
 flowchart LR
     S1["1. Across the Room\nWatching YouTube on Desktop/TV\nMouse & keyboard out of reach"] --> S2["2. Pair in Seconds\nOpen Chrome Extension for 6-digit PIN\nEnter PIN in RELO Phone/Android App"]
