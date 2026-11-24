@@ -20,7 +20,7 @@
 
 ## The Story: Why RELO?
 
-Smart TVs have their own YouTube app, so you can easily cast and control them from your phone. **Laptops and desktops don't**—YouTube runs in a regular web browser, so once you sit back on the couch or bed, you have to get up every time you want to pause, scrub, change volume, or play the next video.
+Smart TVs have their own YouTube app, so you can easily cast and control them from your phone. **Laptops and desktops don't**: YouTube runs in a regular web browser, so once you sit back on the couch or bed, you have to get up every time you want to pause, scrub, change volume, or play the next video.
 
 **RELO** gives your desktop browser the same effortless phone remote experience:
 
