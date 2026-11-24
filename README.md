@@ -171,6 +171,16 @@ cd android
 
 ---
 
+## Setup with AI
+
+Anyone can clone and run RELO using an AI coding agent (Antigravity, Claude Code, Cursor, or Gemini CLI) by pasting this prompt:
+
+```text
+Clone https://github.com/LeonBijo/Relo.git, read llms.txt, install dependencies for services/api, apps/extension, and apps/web, build the Chrome extension, set up services/api/.env from .env.example, start the relay server and web app, and tell me how to load apps/extension/dist in Chrome.
+```
+
+---
+
 ## Testing & Verification
 
 ```bash
